@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meu PWA</title>
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    body { font-family: Arial, sans-serif; padding: 1rem; }
+    h1 { color: #2c3e50; }
+  </style>
+</head>
+<body>
+  <h1>Olá, este é meu PWA!</h1>
+  <p>Este app funciona offline e pode ser instalado.</p>
+
+  <script src="sw.js"></script>
+  <script>
+    // Registrando o Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('Service Worker registrado com sucesso!'))
+        .catch(e => console.log('Erro ao registrar SW:', e));
+    }
+  </script>
+</body>
+</html>
