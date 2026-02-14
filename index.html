@@ -1,105 +1,257 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cards Estilo Shopee</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 40px;
-    }
+<meta charset="UTF-8">
+<title>Web Pedaleira Pro</title>
 
-    h1 {
-      text-align: center;
-      color: #ee4d2d;
-    }
+<style>
+body{
+  margin:0;
+  background:#0f0f0f;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:Arial;
+  color:white;
+}
 
-    .cards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
+.pedal{
+  width:360px;
+  height:560px;
+  background:#1c1c1c;
+  border-radius:25px;
+  box-shadow:0 0 40px #000;
+  padding:20px;
+  text-align:center;
+  position:relative;
+}
 
-    .card {
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s ease;
-    }
+h2{
+  color:#00ff88;
+  margin:5px 0 15px;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
+.knob-container{
+  display:inline-block;
+  margin:12px;
+}
 
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
+.knob{
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:linear-gradient(#333,#111);
+  position:relative;
+  cursor:pointer;
+}
 
-    .card-content {
-      padding: 15px;
-      text-align: center;
-    }
+.knob::after{
+  content:"";
+  width:4px;
+  height:22px;
+  background:#00ff88;
+  position:absolute;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  border-radius:2px;
+}
 
-    .card-title {
-      font-size: 16px;
-      margin: 10px 0;
-      color: #333;
-    }
+.label{
+  margin-top:6px;
+  font-size:13px;
+}
 
-    .btn-ver {
-      display: inline-block;
-      background-color: #ee4d2d;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
+select{
+  margin-top:10px;
+  padding:5px;
+  background:#222;
+  color:white;
+  border:1px solid #444;
+}
 
-    .btn-ver:hover {
-      background-color: #d84322;
-    }
-  </style>
+.footswitch{
+  margin-top:20px;
+  width:140px;
+  height:55px;
+  border-radius:15px;
+  border:none;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.off{ background:#333; color:white; }
+.on{ background:#00ff88; color:black; box-shadow:0 0 20px #00ff88; }
+
+.led{
+  width:15px;
+  height:15px;
+  border-radius:50%;
+  background:#300;
+  margin:10px auto;
+}
+
+.led.active{
+  background:red;
+  box-shadow:0 0 15px red;
+}
+
+.footer{
+  position:absolute;
+  bottom:10px;
+  width:100%;
+  font-size:12px;
+  color:#666;
+}
+</style>
 </head>
+
 <body>
-  <h1>Produtos em Destaque</h1>
 
-  <div class="cards-container">
-    <div class="card">
-      <img src="https://via.placeholder.com/300x180?text=Produto+1" alt="Produto 1">
-      <div class="card-content">
-        <div class="card-title">Produto 1</div>
-        <a href="#" class="btn-ver">Ver</a>
-      </div>
-    </div>
+<div class="pedal">
+  <h2>🔥 WEB PEDALEIRA PRO</h2>
 
-    <div class="card">
-      <img src="https://via.placeholder.com/300x180?text=Produto+2" alt="Produto 2">
-      <div class="card-content">
-        <div class="card-title">Produto 2</div>
-        <a href="#" class="btn-ver">Ver</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://via.placeholder.com/300x180?text=Produto+3" alt="Produto 3">
-      <div class="card-content">
-        <div class="card-title">Produto 3</div>
-        <a href="#" class="btn-ver">Ver</a>
-      </div>
-    </div>
-
-    <!-- Adicione mais cards conforme desejar -->
+  <div>
+    <div class="knob-container"><div class="knob" data-control="drive"></div><div class="label">Drive</div></div>
+    <div class="knob-container"><div class="knob" data-control="tone"></div><div class="label">Tone</div></div>
+    <div class="knob-container"><div class="knob" data-control="level"></div><div class="label">Level</div></div>
   </div>
+
+  <div>
+    <div class="knob-container"><div class="knob" data-control="delay"></div><div class="label">Delay</div></div>
+    <div class="knob-container"><div class="knob" data-control="reverb"></div><div class="label">Reverb</div></div>
+    <div class="knob-container"><div class="knob" data-control="chorus"></div><div class="label">Chorus</div></div>
+  </div>
+
+  <select id="mode">
+    <option value="blues">Blues</option>
+    <option value="rock">Rock</option>
+    <option value="metal">Metal</option>
+  </select>
+
+  <div class="led" id="led"></div>
+  <button id="toggle" class="footswitch off">OFF</button>
+
+  <div class="footer">Web Guitar Processor</div>
+</div>
+
+<script>
+let audioCtx;
+let input, distortion, toneFilter, gainNode;
+let delayNode, delayGain;
+let chorusDelay, chorusLFO, chorusDepth;
+let isOn=false;
+
+let values={
+  drive:30,
+  tone:1500,
+  level:1,
+  delay:0,
+  reverb:0,
+  chorus:0
+};
+
+function makeDistortionCurve(amount){
+  const n=44100;
+  const curve=new Float32Array(n);
+  for(let i=0;i<n;i++){
+    let x=i*2/n-1;
+    curve[i]=(3+amount)*x/(Math.PI+amount*Math.abs(x));
+  }
+  return curve;
+}
+
+async function initAudio(){
+  audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+  input=audioCtx.createMediaStreamSource(stream);
+
+  distortion=audioCtx.createWaveShaper();
+  toneFilter=audioCtx.createBiquadFilter();
+  gainNode=audioCtx.createGain();
+  delayNode=audioCtx.createDelay(2);
+  delayGain=audioCtx.createGain();
+
+  // CHORUS
+  chorusDelay=audioCtx.createDelay();
+  chorusDelay.delayTime.value=0.02;
+  chorusLFO=audioCtx.createOscillator();
+  chorusDepth=audioCtx.createGain();
+  chorusLFO.frequency.value=1.5;
+  chorusDepth.gain.value=0;
+  chorusLFO.connect(chorusDepth);
+  chorusDepth.connect(chorusDelay.delayTime);
+  chorusLFO.start();
+
+  toneFilter.type="lowpass";
+
+  input.connect(distortion);
+  distortion.connect(toneFilter);
+
+  toneFilter.connect(chorusDelay);
+  chorusDelay.connect(delayNode);
+
+  delayNode.connect(delayGain);
+  delayGain.connect(gainNode);
+
+  toneFilter.connect(gainNode); // sinal limpo
+  gainNode.connect(audioCtx.destination);
+
+  updateAudio();
+}
+
+function updateAudio(){
+  distortion.curve=makeDistortionCurve(values.drive);
+  toneFilter.frequency.value=values.tone;
+  gainNode.gain.value=isOn?values.level:0;
+  delayNode.delayTime.value=values.delay;
+  delayGain.gain.value=values.delay;
+  chorusDepth.gain.value=values.chorus*0.01;
+}
+
+function setMode(mode){
+  if(mode==="blues"){ values.drive=20; values.tone=2000; }
+  if(mode==="rock"){ values.drive=50; values.tone=1500; }
+  if(mode==="metal"){ values.drive=90; values.tone=1000; }
+  updateAudio();
+}
+
+document.getElementById("mode").onchange=e=>setMode(e.target.value);
+
+document.getElementById("toggle").onclick=async()=>{
+  if(!audioCtx) await initAudio();
+  isOn=!isOn;
+  document.getElementById("toggle").className="footswitch "+(isOn?"on":"off");
+  document.getElementById("toggle").textContent=isOn?"ON":"OFF";
+  document.getElementById("led").classList.toggle("active");
+  updateAudio();
+};
+
+document.querySelectorAll(".knob").forEach(knob=>{
+  let rotation=0;
+  knob.onmousedown=e=>{
+    document.onmousemove=ev=>{
+      rotation+=ev.movementY*-2;
+      rotation=Math.max(-135,Math.min(135,rotation));
+      knob.style.transform=`rotate(${rotation}deg)`;
+      let percent=(rotation+135)/270;
+      let control=knob.dataset.control;
+
+      if(control==="drive") values.drive=percent*100;
+      if(control==="tone") values.tone=200+percent*4800;
+      if(control==="level") values.level=percent*2;
+      if(control==="delay") values.delay=percent*0.7;
+      if(control==="reverb") values.reverb=percent;
+      if(control==="chorus") values.chorus=percent*100;
+
+      updateAudio();
+    };
+    document.onmouseup=()=>document.onmousemove=null;
+  };
+});
+</script>
+
 </body>
 </html>
